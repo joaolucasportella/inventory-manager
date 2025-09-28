@@ -1,0 +1,9 @@
+.bg-dark input::placeholder,
+.bg-dark select::placeholder {
+    color: #dcdcdc;
+}
+
+.bg-light input::placeholder,
+.bg-light select::placeholder {
+    color: #6c757d;
+}
