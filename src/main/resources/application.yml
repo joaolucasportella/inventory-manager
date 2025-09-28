@@ -1,0 +1,15 @@
+spring:
+  config:
+    import: optional:classpath:/application-secrets.yml
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    properties:
+      jakarta:
+        persistence:
+          validation:
+            mode: none
+  messages:
+    basename: messages
