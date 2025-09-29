@@ -14,7 +14,7 @@ import dev.portella.inventory_manager.model.ProductModel;
 public class ProductService {
 
     private final ProductDAO productDAO;
-    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Produto não encontrado.";
+    private static final String NOT_FOUND_MESSAGE = "Produto não encontrado.";
 
     public ProductService(ProductDAO productDAO) {
         this.productDAO = productDAO;
@@ -43,7 +43,7 @@ public class ProductService {
     }
 
     public ProductModel findByIdOrThrow(String id) {
-        return findById(id).orElseThrow(() -> new IllegalArgumentException(PRODUCT_NOT_FOUND_MESSAGE));
+        return findById(id).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MESSAGE));
     }
 
     public void save(ProductModel product) {
