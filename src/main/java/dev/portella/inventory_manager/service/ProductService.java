@@ -1,6 +1,5 @@
 package dev.portella.inventory_manager.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -58,12 +57,5 @@ public class ProductService {
     public void deleteById(String id) {
         ProductModel product = findByIdOrThrow(id);
         this.productDAO.delete(product);
-    }
-
-    public boolean isUnique(Long id, String field, String value) {
-        List<ProductModel> products = this.productDAO.findByField(field, value);
-        products.removeIf(product -> product.getProductId().equals(id));
-
-        return products.isEmpty();
     }
 }
