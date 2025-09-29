@@ -49,14 +49,14 @@ public class ProductController {
 
     @GetMapping("/search")
     public String searchById(@RequestParam String id, Model model) {
-        Optional<ProductModel> customer = productService.findById(id);
+        Optional<ProductModel> product = productService.findById(id);
 
-        if (customer.isEmpty()) {
-            model.addAttribute("errorMessage", "customer.notFound");
+        if (product.isEmpty()) {
+            model.addAttribute("errorMessage", "product.notFound");
             return SEARCH;
         }
 
-        model.addAttribute(PRODUCT, List.of(customer.get()));
+        model.addAttribute(PRODUCT, List.of(product.get()));
         return SEARCH;
     }
 
@@ -67,12 +67,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public String save(@Valid @ModelAttribute ProductModel customer, BindingResult result) {
+    public String save(@Valid @ModelAttribute ProductModel product, BindingResult result) {
         if (result.hasErrors()) {
             return FORM;
         }
 
-        productService.save(customer);
+        productService.save(product);
         return REDIRECT;
     }
 

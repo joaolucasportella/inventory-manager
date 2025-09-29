@@ -47,23 +47,23 @@ public class ProductService {
         return findById(id).orElseThrow(() -> new IllegalArgumentException(PRODUCT_NOT_FOUND_MESSAGE));
     }
 
-    public void save(ProductModel customer) {
-        if (customer.getProductId() == null) {
-            this.productDAO.create(customer);
+    public void save(ProductModel product) {
+        if (product.getProductId() == null) {
+            this.productDAO.create(product);
         } else {
-            this.productDAO.update(customer);
+            this.productDAO.update(product);
         }
     }
 
     public void deleteById(String id) {
-        ProductModel customer = findByIdOrThrow(id);
-        this.productDAO.delete(customer);
+        ProductModel product = findByIdOrThrow(id);
+        this.productDAO.delete(product);
     }
 
     public boolean isUnique(Long id, String field, String value) {
-        List<ProductModel> customers = this.productDAO.findByField(field, value);
-        customers.removeIf(customer -> customer.getProductId().equals(id));
+        List<ProductModel> products = this.productDAO.findByField(field, value);
+        products.removeIf(product -> product.getProductId().equals(id));
 
-        return customers.isEmpty();
+        return products.isEmpty();
     }
 }

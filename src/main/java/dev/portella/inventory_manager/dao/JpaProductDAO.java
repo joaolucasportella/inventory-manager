@@ -69,19 +69,19 @@ public class JpaProductDAO implements ProductDAO {
 
     @Override
     @Transactional
-    public void create(ProductModel customer) {
-        entityManager.persist(customer);
+    public void create(ProductModel product) {
+        entityManager.persist(product);
     }
 
     @Override
     @Transactional
-    public void update(ProductModel customer) {
-        entityManager.merge(customer);
+    public void update(ProductModel product) {
+        entityManager.merge(product);
     }
 
     @Override
     @Transactional
-    public void delete(ProductModel customer) {
-        entityManager.remove(customer);
+    public void delete(ProductModel product) {
+        entityManager.remove(product);
     }
 }
