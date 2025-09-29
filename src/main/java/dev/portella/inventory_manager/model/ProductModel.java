@@ -41,9 +41,6 @@ public class ProductModel {
     @Column(name = "registration_date", nullable = false, updatable = false, insertable = false)
     private LocalDateTime registrationDate;
 
-    // =========================
-    // Getters e Setters
-    // =========================
     public Long getProductId() {
         return productId;
     }
@@ -90,62 +87,5 @@ public class ProductModel {
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
-    }
-
-    // =========================
-    // Builder Pattern
-    // =========================
-    public static class Builder {
-        private Long productId;
-        private String name;
-        private String description;
-        private String category;
-        private Integer currentQuantity = 0;
-        private LocalDateTime registrationDate;
-
-        public Builder productId(Long productId) {
-            this.productId = productId;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder description(String description) {
-            this.description = description;
-            return this;
-        }
-
-        public Builder category(String category) {
-            this.category = category;
-            return this;
-        }
-
-        public Builder currentQuantity(Integer currentQuantity) {
-            this.currentQuantity = currentQuantity;
-            return this;
-        }
-
-        public Builder registrationDate(LocalDateTime registrationDate) {
-            this.registrationDate = registrationDate;
-            return this;
-        }
-
-        public ProductModel build() {
-            ProductModel product = new ProductModel();
-            product.setProductId(this.productId);
-            product.setName(this.name);
-            product.setDescription(this.description);
-            product.setCategory(this.category);
-            product.setCurrentQuantity(this.currentQuantity);
-            product.setRegistrationDate(this.registrationDate);
-            return product;
-        }
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 }
