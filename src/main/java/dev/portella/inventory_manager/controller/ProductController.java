@@ -37,7 +37,7 @@ public class ProductController {
     @GetMapping
     public String list(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size,
             Model model) {
-        Page<ProductModel> productPage = productService.findPaginated(page, size);
+        Page<ProductModel> productPage = this.productService.findPaginated(page, size);
 
         model.addAttribute(PRODUCT, productPage.getContent());
         model.addAttribute("currentPage", page);
@@ -49,7 +49,7 @@ public class ProductController {
 
     @GetMapping("/search")
     public String searchById(@RequestParam String id, Model model) {
-        Optional<ProductModel> product = productService.findById(id);
+        Optional<ProductModel> product = this.productService.findById(id);
 
         if (product.isEmpty()) {
             model.addAttribute("errorMessage", "product.notFound");
@@ -72,19 +72,19 @@ public class ProductController {
             return FORM;
         }
 
-        productService.save(product);
+        this.productService.save(product);
         return REDIRECT;
     }
 
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable String id, Model model) {
-        model.addAttribute(PRODUCT, productService.findByIdOrThrow(id));
+        model.addAttribute(PRODUCT, this.productService.findByIdOrThrow(id));
         return FORM;
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable String id) {
-        productService.deleteById(id);
+        this.productService.deleteById(id);
         return REDIRECT;
     }
 }
