@@ -49,14 +49,14 @@ public class StorageAreaController {
 
     @GetMapping("/search")
     public String searchById(@RequestParam String id, Model model) {
-        Optional<StorageAreaModel> storageType = this.storageAreaService.findById(id);
+        Optional<StorageAreaModel> storageArea = this.storageAreaService.findById(id);
 
-        if (storageType.isEmpty()) {
-            model.addAttribute("errorMessage", "storageType.notFound");
+        if (storageArea.isEmpty()) {
+            model.addAttribute("errorMessage", "storageArea.notFound");
             return SEARCH;
         }
 
-        model.addAttribute(STORAGE, List.of(storageType.get()));
+        model.addAttribute(STORAGE, List.of(storageArea.get()));
         return SEARCH;
     }
 
@@ -67,12 +67,12 @@ public class StorageAreaController {
     }
 
     @PostMapping
-    public String save(@Valid @ModelAttribute StorageAreaModel storageType, BindingResult result) {
+    public String save(@Valid @ModelAttribute StorageAreaModel storageArea, BindingResult result) {
         if (result.hasErrors()) {
             return FORM;
         }
 
-        this.storageAreaService.save(storageType);
+        this.storageAreaService.save(storageArea);
         return REDIRECT;
     }
 
