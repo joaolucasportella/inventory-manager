@@ -69,19 +69,19 @@ public class JpaTechnicalSheetDAO implements IDAO<TechnicalSheetModel> {
 
     @Override
     @Transactional
-    public void create(TechnicalSheetModel product) {
-        entityManager.persist(product);
+    public void create(TechnicalSheetModel technicalSheet) {
+        entityManager.persist(technicalSheet);
     }
 
     @Override
     @Transactional
-    public void update(TechnicalSheetModel product) {
-        entityManager.merge(product);
+    public void update(TechnicalSheetModel technicalSheet) {
+        entityManager.merge(technicalSheet);
     }
 
     @Override
     @Transactional
-    public void delete(TechnicalSheetModel product) {
-        entityManager.remove(product);
+    public void delete(TechnicalSheetModel technicalSheet) {
+        entityManager.remove(technicalSheet);
     }
 }
