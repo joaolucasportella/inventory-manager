@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dev.portella.inventory_manager.model.StockMovementModel;
 import dev.portella.inventory_manager.service.StockMovementService;
+import dev.portella.inventory_manager.service.StorageAreaService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -23,6 +24,7 @@ import jakarta.validation.Valid;
 public class StockMovementController {
 
     private final StockMovementService stockMovementService;
+    private final StorageAreaService storageAreaService;
 
     private static final String REDIRECT = "redirect:/stock-movement";
     private static final String FORM = "/stock_movement/form";
@@ -30,8 +32,9 @@ public class StockMovementController {
     private static final String SEARCH = "/stock_movement/search";
     private static final String STOCK = "stockMovement";
 
-    public StockMovementController(StockMovementService stockMovementService) {
+    public StockMovementController(StockMovementService stockMovementService, StorageAreaService storageAreaService) {
         this.stockMovementService = stockMovementService;
+        this.storageAreaService = storageAreaService;
     }
 
     @GetMapping
@@ -70,6 +73,14 @@ public class StockMovementController {
     public String save(@Valid @ModelAttribute StockMovementModel stockMovement, BindingResult result) {
         if (result.hasErrors()) {
             return FORM;
+        }
+
+        if (stockMovement.getSourceArea() != null && stockMovement.getSourceArea().getAreaId() == null) {
+            stockMovement.setSourceArea(null);
+        }
+
+        if (stockMovement.getDestinationArea() != null && stockMovement.getDestinationArea().getAreaId() == null) {
+            stockMovement.setDestinationArea(null);
         }
 
         this.stockMovementService.save(stockMovement);
