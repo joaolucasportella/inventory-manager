@@ -7,16 +7,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import dev.portella.inventory_manager.dao.ProductDAO;
+import dev.portella.inventory_manager.dao.JpaProductDAO;
 import dev.portella.inventory_manager.model.ProductModel;
 
 @Service
 public class ProductService {
 
-    private final ProductDAO productDAO;
+    private final JpaProductDAO productDAO;
     private static final String NOT_FOUND_MESSAGE = "Produto não encontrado.";
 
-    public ProductService(ProductDAO productDAO) {
+    public ProductService(JpaProductDAO productDAO) {
         this.productDAO = productDAO;
     }
 
@@ -46,16 +46,16 @@ public class ProductService {
         return findById(id).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MESSAGE));
     }
 
-    public void save(ProductModel product) {
-        if (product.getProductId() == null) {
-            this.productDAO.create(product);
+    public void save(ProductModel productModel) {
+        if (productModel.getProductId() == null) {
+            this.productDAO.create(productModel);
         } else {
-            this.productDAO.update(product);
+            this.productDAO.update(productModel);
         }
     }
 
     public void deleteById(String id) {
-        ProductModel product = findByIdOrThrow(id);
-        this.productDAO.delete(product);
+        ProductModel productModel = findByIdOrThrow(id);
+        this.productDAO.delete(productModel);
     }
 }
