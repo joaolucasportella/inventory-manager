@@ -67,12 +67,12 @@ public class StockMovementController {
     }
 
     @PostMapping
-    public String save(@Valid @ModelAttribute StockMovementModel stock, BindingResult result) {
+    public String save(@Valid @ModelAttribute StockMovementModel stockMovement, BindingResult result) {
         if (result.hasErrors()) {
             return FORM;
         }
 
-        this.stockMovementService.save(stock);
+        this.stockMovementService.save(stockMovement);
         return REDIRECT;
     }
 
