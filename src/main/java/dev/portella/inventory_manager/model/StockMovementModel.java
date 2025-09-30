@@ -2,6 +2,8 @@ package dev.portella.inventory_manager.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -45,7 +47,8 @@ public class StockMovementModel {
 
     @NotNull(message = "{stockMovement.movementType.notNull}")
     @Enumerated(EnumType.STRING)
-    @Column(name = "movement_type", nullable = false)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "movement_type", nullable = false, columnDefinition = "inventory.movement_type_enum")
     private MovementTypeEnum movementType;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
