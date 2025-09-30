@@ -37,13 +37,13 @@ public class StorageTypeController {
     @GetMapping
     public String list(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size,
             Model model) {
-        Page<StorageTypeModel> technicalSheetPage = this.storageTypeService.findPaginated(page, size);
+        Page<StorageTypeModel> storageType = this.storageTypeService.findPaginated(page, size);
 
-        model.addAttribute(STORAGE, technicalSheetPage.getContent());
+        model.addAttribute(STORAGE, storageType.getContent());
         model.addAttribute("currentPage", page);
         model.addAttribute("size", size);
-        model.addAttribute("totalPages", technicalSheetPage.getTotalPages());
-        model.addAttribute("hasNextPage", technicalSheetPage.hasNext());
+        model.addAttribute("totalPages", storageType.getTotalPages());
+        model.addAttribute("hasNextPage", storageType.hasNext());
         return LIST;
     }
 
