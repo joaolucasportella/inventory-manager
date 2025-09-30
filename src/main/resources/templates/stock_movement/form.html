@@ -78,6 +78,7 @@
                 <label for="movementType" class="form-label">Tipo do Movimento:</label>
                 <input type="text" id="movementType" th:value="${stockMovement.movementType.label}"
                     class="form-control-plaintext" readonly />
+                <input type="hidden" th:field="*{movementType}" />
             </div>
 
             <div class="mb-3" th:if="${stockMovement.movementId == null}">
