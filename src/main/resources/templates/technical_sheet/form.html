@@ -27,6 +27,7 @@
 
             <div class="mb-3" th:if="${technicalSheet.sheetId != null}">
                 <label for="product.productId" class="form-label">ID do Produto:</label>
+                <input type="hidden" id="productId" th:field="*{product.productId}" class="form-control" />
                 <a th:href="@{/product/edit/{id}(id=${technicalSheet.product.productId})}"
                     th:text="${technicalSheet.product.productId}" class="d-block text-decoration-none">
                 </a>
