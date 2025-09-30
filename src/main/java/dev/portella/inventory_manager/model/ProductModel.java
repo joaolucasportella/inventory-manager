@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "Product", schema = "inventory")
+@Table(name = "product", schema = "inventory")
 public class ProductModel {
 
     @Id
