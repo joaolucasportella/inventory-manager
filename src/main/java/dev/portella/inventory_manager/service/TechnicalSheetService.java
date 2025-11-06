@@ -11,7 +11,7 @@ import dev.portella.inventory_manager.dao.JpaTechnicalSheetDAO;
 import dev.portella.inventory_manager.model.TechnicalSheetModel;
 
 @Service
-public class TechnicalSheetService {
+public class TechnicalSheetService implements CrudService<TechnicalSheetModel> {
 
     private final JpaTechnicalSheetDAO technicalSheetDAO;
     private static final String NOT_FOUND_MESSAGE = "Ficha técnica não encontrada.";

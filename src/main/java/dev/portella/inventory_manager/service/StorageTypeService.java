@@ -11,7 +11,7 @@ import dev.portella.inventory_manager.dao.JpaStorageTypeDAO;
 import dev.portella.inventory_manager.model.StorageTypeModel;
 
 @Service
-public class StorageTypeService {
+public class StorageTypeService implements CrudService<StorageTypeModel> {
 
     private final JpaStorageTypeDAO storageTypeDAO;
     private static final String NOT_FOUND_MESSAGE = "Tipo de armazenamento não encontrado.";
