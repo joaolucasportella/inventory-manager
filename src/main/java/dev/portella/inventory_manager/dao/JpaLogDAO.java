@@ -1,50 +1,47 @@
 package dev.portella.inventory_manager.dao;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import dev.portella.inventory_manager.model.StockModel;
+import dev.portella.inventory_manager.model.LogModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
-public class JpaStockDAO implements ICrudDAO<StockModel> {
+public class JpaLogDAO implements ILogDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     private CriteriaBuilder cb;
-    private CriteriaQuery<StockModel> cq;
-    private Root<StockModel> root;
+    private CriteriaQuery<LogModel> cq;
+    private Root<LogModel> root;
 
     private void initializeCriteriaQuery() {
         cb = entityManager.getCriteriaBuilder();
-        cq = cb.createQuery(StockModel.class);
-        root = cq.from(StockModel.class);
+        cq = cb.createQuery(LogModel.class);
+        root = cq.from(LogModel.class);
     }
 
     @Override
-    public Page<StockModel> findPaginated(Pageable pageable) {
+    public Page<LogModel> findPaginated(Pageable pageable) {
         initializeCriteriaQuery();
         cq.select(root);
         cq.orderBy(cb.asc(root.get("id")));
 
-        TypedQuery<StockModel> query = entityManager.createQuery(cq);
+        TypedQuery<LogModel> query = entityManager.createQuery(cq);
         query.setFirstResult((int) pageable.getOffset());
         query.setMaxResults(pageable.getPageSize());
 
         CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
-        Root<StockModel> countRoot = countQuery.from(StockModel.class);
+        Root<LogModel> countRoot = countQuery.from(LogModel.class);
         countQuery.select(cb.count(countRoot));
         long totalRecords = entityManager.createQuery(countQuery).getSingleResult();
 
@@ -52,36 +49,13 @@ public class JpaStockDAO implements ICrudDAO<StockModel> {
     }
 
     @Override
-    public StockModel findById(Long id) {
-        return entityManager.find(StockModel.class, id);
-    }
-
-    @Override
-    public List<StockModel> findByField(String field, Object value) {
-        initializeCriteriaQuery();
-
-        Predicate predicate = cb.equal(root.get(field), value);
-        cq.where(predicate);
-
-        TypedQuery<StockModel> query = entityManager.createQuery(cq);
-        return query.getResultList();
+    public LogModel findById(Long id) {
+        return entityManager.find(LogModel.class, id);
     }
 
     @Override
     @Transactional
-    public void create(StockModel stock) {
-        entityManager.persist(stock);
-    }
-
-    @Override
-    @Transactional
-    public void update(StockModel stock) {
-        entityManager.merge(stock);
-    }
-
-    @Override
-    @Transactional
-    public void delete(StockModel stock) {
-        entityManager.remove(stock);
+    public void create(LogModel logModel) {
+        entityManager.persist(logModel);
     }
 }

@@ -18,7 +18,7 @@ import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
-public class JpaStockMovementDAO implements IDAO<StockMovementModel> {
+public class JpaStockMovementDAO implements ICrudDAO<StockMovementModel> {
 
     @PersistenceContext
     private EntityManager entityManager;

@@ -18,7 +18,7 @@ import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
-public class JpaTechnicalSheetDAO implements IDAO<TechnicalSheetModel> {
+public class JpaTechnicalSheetDAO implements ICrudDAO<TechnicalSheetModel> {
 
     @PersistenceContext
     private EntityManager entityManager;

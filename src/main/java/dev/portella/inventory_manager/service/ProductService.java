@@ -11,7 +11,7 @@ import dev.portella.inventory_manager.dao.JpaProductDAO;
 import dev.portella.inventory_manager.model.ProductModel;
 
 @Service
-public class ProductService implements CrudService<ProductModel> {
+public class ProductService implements ICrudService<ProductModel> {
 
     private final JpaProductDAO productDAO;
     private static final String NOT_FOUND_MESSAGE = "Produto não encontrado.";

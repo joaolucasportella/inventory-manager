@@ -16,7 +16,7 @@ import dev.portella.inventory_manager.model.StockModel;
 import dev.portella.inventory_manager.model.StockMovementModel;
 
 @Service
-public class StockMovementService implements CrudService<StockMovementModel> {
+public class StockMovementService implements ICrudService<StockMovementModel> {
 
     private final JpaStockMovementDAO stockMovementDAO;
     private final JpaStockDAO stockDAO;
