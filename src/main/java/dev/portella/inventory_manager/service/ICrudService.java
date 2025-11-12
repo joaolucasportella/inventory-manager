@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
-public interface CrudService<T> {
+public interface ICrudService<T> {
     Page<T> findPaginated(int page, int size);
 
     Optional<T> findById(String id);

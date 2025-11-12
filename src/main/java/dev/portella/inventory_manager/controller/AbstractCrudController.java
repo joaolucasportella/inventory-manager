@@ -7,11 +7,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-import dev.portella.inventory_manager.service.CrudService;
+import dev.portella.inventory_manager.service.ICrudService;
 
 public abstract class AbstractCrudController<T> {
 
-    protected final CrudService<T> service;
+    protected final ICrudService<T> service;
 
     protected final String REDIRECT;
     protected final String FORM;
@@ -19,7 +19,7 @@ public abstract class AbstractCrudController<T> {
     protected final String SEARCH;
     protected final String ATTR_NAME;
 
-    protected AbstractCrudController(CrudService<T> service, String redirect, String form, String list,
+    protected AbstractCrudController(ICrudService<T> service, String redirect, String form, String list,
             String search, String attrName) {
         this.service = service;
         this.REDIRECT = redirect;

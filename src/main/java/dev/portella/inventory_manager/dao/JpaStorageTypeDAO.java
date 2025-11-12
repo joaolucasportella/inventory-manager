@@ -18,7 +18,7 @@ import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
-public class JpaStorageTypeDAO implements IDAO<StorageTypeModel> {
+public class JpaStorageTypeDAO implements ICrudDAO<StorageTypeModel> {
 
     @PersistenceContext
     private EntityManager entityManager;

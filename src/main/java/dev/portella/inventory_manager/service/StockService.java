@@ -11,7 +11,7 @@ import dev.portella.inventory_manager.dao.JpaStockDAO;
 import dev.portella.inventory_manager.model.StockModel;
 
 @Service
-public class StockService implements CrudService<StockModel> {
+public class StockService implements ICrudService<StockModel> {
 
     private final JpaStockDAO stockDAO;
     private static final String NOT_FOUND_MESSAGE = "Estoque não encontrado.";

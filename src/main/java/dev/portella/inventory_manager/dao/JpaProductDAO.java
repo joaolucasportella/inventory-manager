@@ -18,7 +18,7 @@ import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
-public class JpaProductDAO implements IDAO<ProductModel> {
+public class JpaProductDAO implements ICrudDAO<ProductModel> {
 
     @PersistenceContext
     private EntityManager entityManager;
