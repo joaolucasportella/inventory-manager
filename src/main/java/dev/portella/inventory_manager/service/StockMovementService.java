@@ -66,13 +66,13 @@ public class StockMovementService implements ICrudService<StockMovementModel> {
         }
 
         List<StockModel> stockByProduct = stockDAO.findByField(
-            "product.product_id",
-            movement.getProduct().getProductId()
+            "product",
+            movement.getProduct()
         );
 
         StockModel sourceStock = null;
         for (StockModel stockModel : stockByProduct) {
-            if (stockModel.getArea().equals(movement.getSourceArea())) {
+            if (stockModel.getArea().getAreaId().equals(movement.getSourceArea().getAreaId())) {
                 sourceStock = stockModel;
                 break;
             }
@@ -110,7 +110,7 @@ public class StockMovementService implements ICrudService<StockMovementModel> {
 
                 StockModel destinationStock = null;
                 for (StockModel stockModel : stockByProduct) {
-                    if (stockModel.getArea().equals(movement.getDestinationArea())) {
+                    if (stockModel.getArea().getAreaId().equals(movement.getDestinationArea().getAreaId())) {
                         destinationStock = stockModel;
                         break;
                     }
@@ -121,6 +121,7 @@ public class StockMovementService implements ICrudService<StockMovementModel> {
                     destinationStock.setProduct(sourceStock.getProduct());
                     destinationStock.setArea(movement.getDestinationArea());
                     destinationStock.setQuantity(quantity);
+                    destinationStock.setExpiryDate(sourceStock.getExpiryDate());
                     stockDAO.create(destinationStock);
                 } else {
                     destinationStock.setQuantity(destinationStock.getQuantity() + quantity);
